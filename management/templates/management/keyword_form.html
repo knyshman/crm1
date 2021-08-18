@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Новое ключевое слово {% endblock title %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-success btn-sm" value="Сохранить ключевое слово" />
+
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Новая компания {% endblock title %}
+{% block content %}
+<form id="myForm" method="post" action="">
+            {% csrf_token %}
+
+    {{form.media}}
+    {{ form.as_p }}
+    <p>Контактные лица</p>
+    <p>{{manager_formset.as_ul}}</p>
+    <p>{{email_formset.as_table}}</p>
+
+    {{phone_formset.as_ul}}
+
+
+    <input type="submit" class="btn btn-success btn-sm" value="Сохранить компанию" />
+       </form>
+{% endblock content %}

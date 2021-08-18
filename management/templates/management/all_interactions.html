@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} Список взаимодействий {% endblock title %}
+{% block content %}
+    <h1>Список взаимодействий</h1>
+{% csrf_token %}
+<form action="{% url 'interaction_list' %}" method="GET">
+  <p>Вывести взаимодействия с ключевыми словами:</p>
+  {% for word in view.get_keywords %}
+  <input type="checkbox" class="checked" name="q" value="{{word.keyword}}">
+  <span class="span editContent">{{ word.keyword }}</span>
+  {%endfor%}
+    {% for channel in view.get_channel %}
+    <input type="checkbox" class="checked" name="q" value="{{channel.channel}}">
+  <span class="span editContent">{{ channel.channel }}</span>
+    {%endfor%}
+  <a href="{%url 'keyword_create'%}">Добавить</a>
+
+  <div>
+    <button type="submit">ок</button>
+  </div>
+</form>
+
+<p><a href="{%url 'interaction_create' %}" class="btn btn-outline-success btn-sm">Добавить взаимодействие</a></p>
+  {%for int in object_list%}
+<p><a href="{% url 'interaction_detail' int.pk%}">{{int.channel}} {{int.company}} ({{int.project}})</a></p>
+{%endfor%}
+
+{% endblock %}
+{% include pagination %}
+{% include pagination %}

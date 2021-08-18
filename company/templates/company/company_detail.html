@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} {{ company.name }} {% endblock title %}
+{% block content %}
+  <h1>Компания: {{ company.name }}</h1>
+
+  <p>Контактные лица:</p>
+    {% for el in company.companymanager_set.all %}
+    <p>{{el.name }} {{el.surname}} ({{el.manager_position}})</p>
+  {% endfor %}
+  <p><strong>Телефон:</strong></p>
+  {% for el in company.phone_set.all %}
+  <p>{{ el.phone }}</p>
+  {% endfor %}
+  <p><strong>Email:</strong></p>
+    <ul>{% for el in company.companyemail_set.all %}
+  <li>{{ el.company_email }}</li>
+      {%endfor%}
+  </ul>
+{% csrf_token %}
+{{company.description.media}}
+Описание:{{ company.description|safe }}
+  <p><strong>Адрес:</strong> {{ company.address }}</p>
+  <p><strong>Дата создания: </strong>{{ company.date_create }}</p>
+  <p><strong>Дата последнего изменения: </strong>{{ company.date_edit }}</p>
+{% if user.is_staff %}
+<a href="{% url 'company_update' company.pk %}" class="btn btn-outline-warning btn-sm">Изменить данные о компании</a>
+<a href="{% url 'company_delete' company.pk %}" class="btn btn-outline-danger btn-sm">Удалить компанию</a>
+<a href="{% url 'interaction_by_company' company.pk%}" class="btn btn-outline-primary btn-sm">Взаимодействия с компанией</a>
+{% endif %}
+<h2>Проекты</h2>
+{% if user.is_staff %}
+<a href="{% url 'project_create' %}" class="btn btn-outline-success btn-sm">Добавить проект</a>
+{% endif %}
+
+  <div style="margin-left:20px;margin-top:20px">
+{% for project in company.project_set.all %}
+    <p><a href="{% url 'project_detail' project.pk %}">{{project.project}}</a></p>
+
+{%endfor%}
+  </div>
+{% endblock %}

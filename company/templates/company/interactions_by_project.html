@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Взаимодействия по проекту: {{object_list.0.name}}{% endblock title %}
+{% block content %}
+    <h1>Взаимодействия по проекту: {{object_list.0.name}} </h1>
+{% csrf_token %}
+
+    <p><a href="{% url 'interaction_create'%}" class="btn btn-success btn-sm">Добавить взаимодействие</a></p>
+    {% if object_list %}
+    <ul>
+      {% for int in object_list %}
+      <li>
+          <a href="{% url 'interaction_detail' int.pk %}">{{int.name}} ({{int.company}}) - {{int.channel}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+{% endblock %}
+{% include pagination %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Список проектов {% endblock title %}
+{% block content %}
+    <h1>Список проектов</h1>
+{%if user.is_staff%}
+<a href="{%url 'project_create'%}" class="btn btn-outline-success btn-sm">Создать проект</a>
+{%endif%}
+    {% if object_list %}
+    <ul>
+      {% for project in object_list %}
+      <li>
+          <a href="{% url 'project_detail' project.pk %}">{{project.project}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+{% endblock %}
+{% include pagination %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Список компаний {% endblock title %}
+{% block content %}
+    <h1>Список компаний</h1>
+{% if user.is_staff %}
+<div style="margin-top:20px">
+    <p><a href="{% url 'company_create'%}" class="btn btn-success btn-sm">Добавить компанию</a></p></div>
+<div style="margin-left:20px;margin-top:20px; color: #fff">
+    {%endif%}
+     Сортировать:
+</div>
+    <a href="?sort=name">по названию &#8593</a>
+    <a href="?sort=-name">по названию &#8595</a>
+    <a href="?sort=date_create">по дате создания &#8593</a>
+    <a href="?sort=-date_create">по дате создания &#8595</a>
+
+    {% if company_list %}
+    <ul style="margin-left:20px;margin-top:20px">
+      {% for company in company_list %}
+      <li>
+          <a href="{% url 'company_detail' company.pk %}">{{company.name}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+{% endblock %}
+{% include pagination %}

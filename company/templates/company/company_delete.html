@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Удаление компании {% endblock title %}
+{% block content %}
+
+<h1>Удаление компании</h1>
+
+<p>Вы действительно хотите удалить компанию: {{ company.name }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" class="btn btn-danger btn-sm" value="Да, удалить." />
+</form>
+
+{% endblock %}

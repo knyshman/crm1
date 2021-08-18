@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} {{object.username }}{% endblock title %}
+{% block content %}
+<h1>{{object.username}}</h1>
+{% csrf_token %}
+{%if object.photo%}
+{% load thumbnail %}
+{% thumbnail object.photo "150" as im %}
+    <a href="{{ object.photo.url }}">
+        <p><img src="{{ im.url }}" class="image-detail"></p>
+    </a>
+{% endthumbnail %}
+{%endif%}
+<p>Имя: {{object.first_name}} {{object.last_name}}</p>
+<p>Email: {{object.email}}</p>
+
+<a href="{%url 'manager_update'%}" class="btn btn-outline-light btn-sm">Изменить профиль</a>
+<p><a href="{%url 'interaction_by_manager_list'%}" class="btn btn-outline-light btn-sm">Мои взаимодействия</a></p>
+{% endblock %}

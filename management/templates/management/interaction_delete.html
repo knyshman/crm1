@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Удаление взаимодействия {% endblock title %}
+{% block content %}
+
+<h1>Удаление компании</h1>
+
+<p>Вы действительно хотите удалить взаимодействие: {{interaction.channel}} : {{ interaction.company }} ({{interaction.project}})?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" class="btn btn-danger btn-sm" value="Да, удалить." />
+</form>
+
+{% endblock %}

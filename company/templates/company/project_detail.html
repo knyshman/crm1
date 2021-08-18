@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %} {{ project.project }} {% endblock title %}
+{% block content %}
+  <h1>Проект: {{ project.project }}</h1>
+
+  <p><strong>Коомпания:</strong> {{project.company }}</p>
+  <p><strong>Описание:</strong> {{ project.description }}</p>
+  <p><strong>Дата начала: </strong>{{ project.start_date }}</p>
+  <p><strong>Дата окончания: </strong>{{ project.final_date }}</p>
+  <p><strong>Стоимость:</strong> {{ project.price }}</p>
+{% if user.is_staff %}
+<a href="{% url 'project_update' project.pk %}"class="btn btn-outline-warning btn-sm">Изменить данные проекта</a>
+<a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger btn-sm">Удалить проект</a>
+<a href="{% url 'interaction_by_project' project.pk%}" class="btn btn-outline-primary btn-sm">Взаимодействия по проекту</a>
+
+{%endif%}
+{% endblock %}
