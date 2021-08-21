@@ -20,13 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-5w%l&907k&-fp_7sb0fhc($r5_7m3hhrc^_(b)t+&g6ej2csgf'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-5w%l&907k&-fp_7sb0fhc($r5_7m3hhrc^_(b)t+&g6ej2csgf')
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = bool(os.environ.get('DJANGO_DEBUG'))
 AUTH_USER_MODEL = 'management.User'
 ALLOWED_HOSTS = ['*']
 
@@ -128,7 +128,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 
 LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
