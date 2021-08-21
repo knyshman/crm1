@@ -44,4 +44,4 @@ class Interaction(models.Model):
 
     def get_absolute_url(self):
         """Get url after successful creating or updating of current interaction"""
-        return reverse('interaction_detail', kwargs={'pk': self.id})
+        return reverse('interaction_detail', kwargs={'pk': self.pk})
