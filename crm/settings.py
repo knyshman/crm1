@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-5w%l&907k&-fp_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 AUTH_USER_MODEL = 'management.User'
 ALLOWED_HOSTS = ['*']
 
@@ -139,3 +139,10 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 FILE_UPLOAD_PERMISSION = 0o700
 CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'archives')
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+import django_heroku
+django_heroku.settings(locals())
