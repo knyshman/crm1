@@ -140,7 +140,6 @@ FILE_UPLOAD_PERMISSION = 0o700
 CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'archives')
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-DISABLE_COLLECTSTATIC=0
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
