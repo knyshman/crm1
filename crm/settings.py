@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG'))
+DEBUG = False
 AUTH_USER_MODEL = 'management.User'
 ALLOWED_HOSTS = ['*']
 
